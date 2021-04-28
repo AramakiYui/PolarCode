@@ -1,6 +1,6 @@
 %使用巴氏参数上界方法构造Polar Code
 %Author:马恺
-function construct_polar_code_BP(N,design_snr_dB)
+function construct_polar_code_BA(N,design_snr_dB)
     n = ceil(log2(N)); 
     NN = 2^n;
     if(NN~=N)

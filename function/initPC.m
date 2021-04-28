@@ -36,7 +36,7 @@ end
 
 switch construction_method
     case 0
-        construct_polar_code_BP(N,design_snr_dB);
+        construct_polar_code_BA(N,design_snr_dB);
         constructed_code_file_name = sprintf('constructedCode//PolarCode_block_length_%d_designSNR_%.2fdB_method_Bhattacharyya.txt',N,design_snr_dB);
     case 1
         construct_polar_code_GA(N,sigma);
