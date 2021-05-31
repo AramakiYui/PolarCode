@@ -6,11 +6,11 @@ global PCparams;
 addpath('function');
 addpath('constructedCode')
 
-N = 256;                                        %码长
-K = 128;                                        %信息位长度
+N = 1024;                                        %码长
+K = 512;                                        %信息位长度
 Rc = K/N;                                       %码率
 Rm = 1;                                         %BPSK通信系统的调制率
-ebn0 = 1:0.5:4;                                 %比特信噪比
+ebn0 = 1:0.5:3.5;                                 %比特信噪比
 SNR = ebn0 + 10*log10(Rc*Rm) + 10*log10(2);     %符号信噪比，实数信号 + 10*log10(2)2倍过采样系数
 SNR_num = 10.^(SNR/10);
 
