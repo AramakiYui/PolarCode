@@ -10,7 +10,7 @@ N = 256;                                        %码长
 K = 128;                                        %信息位长度
 Rc = K/N;                                       %码率
 Rm = 1;                                         %BPSK通信系统的调制率
-ebn0 = 1:0.5:3;                                 %比特信噪比
+ebn0 = 1:0.5:4;                                 %比特信噪比
 SNR = ebn0 + 10*log10(Rc*Rm) + 10*log10(2);     %符号信噪比，实数信号 + 10*log10(2)2倍过采样系数
 SNR_num = 10.^(SNR/10);
 
@@ -18,7 +18,7 @@ design_snr_dB = 0;  %巴氏参数法构造极化码参数
 sigma = 0.9;        %高斯近似法构造极化码参数（噪声方差）
 
 min_frame_errors = 10;
-min_frame_num = 10000;
+min_frame_num = 5000;
 max_frame_num = 1e7;
 
 construction_method = input('Choose Polar Code Construction Method: 0---Bhattacharyya  1---GA\n');
@@ -132,17 +132,47 @@ semilogy(ebn0,bpsk_BER,'rv-','LineWidth',1.5,'MarkerSize',6)
 hold on;
 semilogy(ebn0,bpsk_FER,'rv:','LineWidth',1.5,'MarkerSize',6)
 grid on;
+
+strBER = ' BER';
+strFER = ' FER';
+strN = num2str(N);
+strK = num2str(K);
 switch decoding_method
     case 0
-        legend('Polar Code SC BER','Polar Code SC FER','BPSK BER','BPSK FER');
+        str0 = 'PC SC-';
+        str1=[str0,strN,'-',strK,strBER];
+        str2=[str0,strN,'-',strK,strFER];
+        legend(str1,str2,'BPSK BER','BPSK FER');
     case 1
-        legend('Polar Code SSC BER','Polar Code SSC FER','BPSK BER','BPSK FER');
+        str0 = 'PC SSC-';
+        str1=[str0,strN,'-',strK,strBER];
+        str2=[str0,strN,'-',strK,strFER];
+        legend(str1,str2,'BPSK BER','BPSK FER');
     case 2
-        legend('Polar Code SCL BER','Polar Code SCL FER','BPSK BER','BPSK FER');
+        strL = num2str(scl_list_size);
+        if crc_size == 0
+            str0 = 'PC SCL-';
+            strtail = ['-',strL];
+        else
+            str0 = 'PC CASCL-';
+            strCRC = num2str(crc_size);
+            strtail = ['-',strL,'-',strCRC];
+        end
+        str1=[str0,strN,'-',strK,strtail,strBER];
+        str2=[str0,strN,'-',strK,strtail,strFER];
+        legend(str1,str2,'BPSK BER','BPSK FER');
     case 3
-        legend('Polar Code BP BER','Polar Code BP FER','BPSK BER','BPSK FER');
+        str0 = 'PC BP-';
+        strT = num2str(bp_iter_num);
+        str1=[str0,strN,'-',strK,'-',strT,strBER];
+        str2=[str0,strN,'-',strK,'-',strT,strFER];
+        legend(str1,str2,'BPSK BER','BPSK FER');
     case 4
-        legend('Polar Code SCAN BER','Polar Code SCAN FER','BPSK BER','BPSK FER');
+        str0 = 'PC SCAN-';
+        strI = num2str(scan_iter_num);
+        str1=[str0,strN,'-',strK,'-',strI,strBER];
+        str2=[str0,strN,'-',strK,'-',strI,strFER];
+        legend(str1,str2,'BPSK BER','BPSK FER');
 end
 
 toc
