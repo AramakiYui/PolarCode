@@ -1,21 +1,14 @@
 # Polar Code
-
 **本程序在[polar-code](https://github.com/luxinjin/polar-code)的基础上加以改进，仅供学习交流使用，请勿用于商业目的。**
-
 *注：部分代码已添加注释，如出现乱码使用GB 2312编码重新打开*
 
 ## 程序说明
-
 基础学习资料见[Info](https://github.com/AramakiYui/PolarCode/tree/master/info)
-
 本程序主要分为三个功能模块：构造编码模块；译码模块；仿真对比模块。
 
-
-
 ### main.m
-
-```matlab
 对于主函数main：
+```matlab
 N = 256;                                        % 码长
 K = 128;                                        % 信息位长度
 Rc = K/N;                                       % 码率
@@ -46,14 +39,10 @@ end
 % 输出仿真结果
 ```
 
-
-
 ### Polar Code数据结构
-
-```matlab
 initPC(N,K,construction_method,design_snr_dB,sigma,crc_size);
 Polar码初始化程序，主要构建Polar码的数据结构PCparams：
-
+```matlab
 % N:码长
 % K:信息位长
 % n = log2(N)
@@ -66,12 +55,8 @@ Polar码初始化程序，主要构建Polar码的数据结构PCparams：
 根据构造方式不同加载信息比特序列，进行信息位的选取
 ```
 
-
-
 ### 构造编码模块
-
 相对于源代码仓库的手动生成构造编码序列位置，本程序自动生成不同编码方式在当前运行场景下的信息位置并自动加载。
-
 ```js
 % 巴氏参数上界
 constructedCode//PolarCode_block_length_%d_designSNR_%.2fdB_method_Bhattacharyya.txt
@@ -79,15 +64,10 @@ constructedCode//PolarCode_block_length_%d_designSNR_%.2fdB_method_Bhattacharyya
 % 高斯近似
 constructedCode//PolarCode_block_length_%d_sigma_%.2f_method_GA.txt
 ```
-
 pencode()是编码程序。引入crc校验时，需要将crc校验信息当成是信息的一部分进行编码。
 
-
-
 ### 译码模块
-
 译码算法相关都在文件夹[function](https://github.com/AramakiYui/PolarCode/tree/master/function)下：
-
 ```js
 % polar_SC_decode是SC译码算法，逐次消除译码(Successive Cancellation)
 
@@ -101,8 +81,5 @@ pencode()是编码程序。引入crc校验时，需要将crc校验信息当成�
 % polar_SCAN_decode是SCAN译码算法，软消除译码(Soft-Cancellation)
 ```
 
-
-
 ### 仿真对比模块
-
 仿真对比结果都在文件夹[result](https://github.com/AramakiYui/PolarCode/tree/master/result)下，包括同译码算法不同码长性能分析；同译码算法不同码长性能分析和构造编码方式对性能的影响，详见[readme](https://github.com/AramakiYui/PolarCode/blob/master/result/readme.md)。
