@@ -1,9 +1,11 @@
 # Polar Code
 **本程序在[polar-code](https://github.com/luxinjin/polar-code)的基础上加以改进，仅供学习交流使用，请勿用于商业目的。**
+
 *注：部分代码已添加注释，如出现乱码使用GB 2312编码重新打开*
 
 ## 程序说明
 基础学习资料见[Info](https://github.com/AramakiYui/PolarCode/tree/master/info)
+
 本程序主要分为三个功能模块：构造编码模块；译码模块；仿真对比模块。
 
 ### main.m
@@ -41,6 +43,7 @@ end
 
 ### Polar Code数据结构
 initPC(N,K,construction_method,design_snr_dB,sigma,crc_size);
+
 Polar码初始化程序，主要构建Polar码的数据结构PCparams：
 ```matlab
 % N:码长
@@ -57,6 +60,7 @@ Polar码初始化程序，主要构建Polar码的数据结构PCparams：
 
 ### 构造编码模块
 相对于源代码仓库的手动生成构造编码序列位置，本程序自动生成不同编码方式在当前运行场景下的信息位置并自动加载。
+
 ```js
 % 巴氏参数上界
 constructedCode//PolarCode_block_length_%d_designSNR_%.2fdB_method_Bhattacharyya.txt
