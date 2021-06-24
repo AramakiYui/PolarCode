@@ -15,7 +15,7 @@
 ### main.m
 
 ```matlab
-% 对于主函数main：
+对于主函数main：
 N = 256;                                        % 码长
 K = 128;                                        % 信息位长度
 Rc = K/N;                                       % 码率
@@ -51,8 +51,8 @@ end
 ### Polar Code数据结构
 
 ```matlab
-% initPC(N,K,construction_method,design_snr_dB,sigma,crc_size);
-% Polar码初始化程序，主要构建Polar码的数据结构PCparams：
+initPC(N,K,construction_method,design_snr_dB,sigma,crc_size);
+Polar码初始化程序，主要构建Polar码的数据结构PCparams：
 
 % N:码长
 % K:信息位长
@@ -94,7 +94,7 @@ pencode()是编码程序。引入crc校验时，需要将crc校验信息当成�
 % polar_SSC_decode是SC算法的简化算法，简化逐次消除译码(Simplified Successive Cancellation)
 
 % polar_SCL_decode是CA-SCL译码算法，循环冗余校验辅助的逐次消除列表译码(CRC Aided Successive Cancellation List)；
-	若crc_size = 0，退化为逐次消除列表译码(Successive Cancellation List)
+  若crc_size = 0，退化为逐次消除列表译码(Successive Cancellation List)
 
 % polar_BP_decode是BP译码算法，置信传播译码(Belief Propagation)
 
